@@ -1,0 +1,90 @@
+#defaultCanvas{
+ 
+}
+
+
+
+/*
+#bg{
+	position:relative;
+	animation:myfirst 40s;
+	-moz-animation:myfirst 40s; 
+	-webkit-animation:myfirst 40s; 
+	-o-animation:myfirst 40s; 	
+}
+
+@keyframes myfirst
+{
+0%   {left:0px; top:0px;}
+100% {left:-800px; top:0px;}
+}
+
+@-moz-keyframes myfirst 
+{
+0%   {left:0px; top:0px;}
+100% {left:-800px; top:0px;}
+}
+
+@-webkit-keyframes myfirst 
+{
+0%   {left:0px; top:0px;}
+100% {left:-800px; top:0px;}
+}
+
+@-o-keyframes myfirst 
+{
+0%   {left:0px; top:0px;}
+100% {left:-800px; top:0px;}
+}
+*/
+
+body{
+	z-index: -100;
+	background-image: url(bg2.jpg);
+}
+#navi{
+	position:absolute;
+	top:50%;
+	left:50%;
+	margin-top:-311px;
+	margin-left:-282px;
+	background-image: url(navigation.png);
+	z-index: -99;
+	width: 696px;
+	height: 622px;
+}
+
+
+
+#Cosmos{
+	float: left;
+	z-index: 3;
+	background-color: #333;
+	position: relative;
+	height: 104px;
+	width: 89px;
+	left:152px;
+	top: 111px;
+}
+
+#Ocean{
+	float: left;
+	z-index: 5;
+	background-color: #333;
+	position: relative;
+	height: 105px;
+	width: 89px;
+	left:192px;
+	top: 148px;
+}
+
+#Flora{
+	float: left;
+	z-index: 5;
+	background-color: #333;
+	position: relative;
+	height: 106px;
+	width: 104px;
+	left:85px;
+	top: 297px;
+}
