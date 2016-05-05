@@ -1,10 +1,3 @@
-#defaultCanvas{
- 	position:absolute;
-	top:50%;
-	left:50%;
-    z-index: -99;
-}
-
 body{
 	color: #FFF;
 	width: 100%;
@@ -12,6 +5,14 @@ body{
     -webkit-font-smoothing: antialiased;
 }
 
+#defaultCanvas{
+ 	position:absolute;
+	top:50%;
+	left:50%;
+    z-index: -99;
+}
+
+/*
 #bg{
 	position:absolute;
 	top:50%;
@@ -23,7 +24,7 @@ body{
 	width: 2000px;
 	height: 1333px;
 }
-
+*/
 #video-background {
 /*  making the video fullscreen  */
   position: fixed;
@@ -36,89 +37,20 @@ body{
   z-index: -100;
 }
 
-a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, body, canvas, caption, center, cite, code, dd, del, details, dfn, div, dl, dt, em, embed, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, html, i, iframe, img, ins, kbd, label, legend, li, mark, menu, nav, object, ol, output, p, pre, q, ruby, s, samp, section, small, span, strike, strong, sub, summary, sup, table, tbody, td, tfoot, th, thead, time, tr, tt, u, ul, var, video {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font: inherit;
-    font-size: 100%;
-    vertical-align: baseline;
-}
 
-.wrapper-elementframe{
+#wrapper-elementframe{
+	opacity: 0;
 	position: absolute;
 	top: 30px;
 	right: 30px;
 	bottom: 30px;
 	left: 30px;
-    font-family:Inconsolata;
     font-size: 16px
 }
 
-
-
-.wrapper-elementframe .share {
-	display: inline-block
-}
-
-.wrapper--experience .icon-logo {
-	font-size: 99pt;
-	color: #FFF
-}
-
-
-
-
-
-
-.wrapper-elementframe .share {
-	display: inline-block
-}
-
-.share {
-    
-	display: inline-block；
-        
-}
-
-
-
-.share a {
-	color: #FFF;
-	text-decoration: none;
-	display: block;
-	padding: 2px
-}
-
-.share a .icon {
-	display: block;
-	fill: #FFF;
-	-webkit-transition: fill .1s linear;
-	transition: fill .1s linear
-}
-
-.share__list,.share__list__item {
-	display: inline-block
-}
-
-.no-touchevents .share a:hover .icon {
-	fill: #e47839
-}
-
-
-
-.share>span {
-    opacity: .4;
-}
-
-
-
-
 button {
-    padding: 0;
     border: 0;
-    font-size: inherit;
-    font-family: inherit;
+    font-size: 16px;
     background-color: transparent;
 }
 
@@ -127,48 +59,13 @@ a, button {
     text-decoration: none;
 }
 
-.link--underline,button {
-	cursor: pointer;
-	outline: 0
-}
 
 .link--orange {
-	-webkit-transition: color .1s linear;
 	transition: color .1s linear
 }
 
 .link--orange:hover {
 	color: #e47839
-}
-
-@font-face {
-	   font-family: Inconsolata;
-	   src: url(../font/Inconsolata1.ttf);
-	   font-weight:200;
-	   font-style: normal;
-	 }
-
-@font-face {
-	   font-family: Camphor;
-	   src: url(../font/Camphor.ttf);
-	   font-weight:200;
-	   font-style: normal;
-	 }
-
-
-
-
-
-
-.artist__description,.artist__year,.can-release .spacebar__posttext,.link--need-help,.link--underline,.spacebar__button__inner span,.spacebar__loading,.spacebar__posttext,.spacebar__pretext,.subtitle,.title--1,.title--artist,.wrapper--cover-title p,.wrapper--credits,body,html {
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale
-}
-
-
-.spacebar__button__inner span {
-	font-family: Camphor;
-	font-weight: 100
 }
 
 .spacebar__posttext,.spacebar__pretext {
@@ -178,7 +75,6 @@ a, button {
 	white-space: nowrap;
 	display: inline-block;
 	vertical-align: top;
-    font-family: Camphor;
 	font-weight: bold;
     -webkit-font-smoothing: antialiased;
 }
@@ -193,8 +89,8 @@ a, button {
 	display: inline-block;
 	vertical-align: top;
 	margin-bottom: 2px;
-	user-select: none
-	user-select: none
+	/*user-select: none
+	user-select: none*/
 }
 
 .spacebar__button__inner {
@@ -217,8 +113,6 @@ a, button {
 .spacebar__button__inner span {
 	position: relative;
 	display: block;
-	opacity: 0;
-	color: #FFF;
 	font-size: 17px;
 	line-height: 42px;
 	margin: auto
@@ -235,28 +129,20 @@ a, button {
 	z-index: 1
 }
 
-.is-mobile[data-context=transition] .spacebar__posttext,.is-mobile[data-context=transition] .spacebar__pretext,.is-mobile[data-context=experience] .spacebar__posttext,.is-mobile[data-context=experience] .spacebar__pretext,.is-mobile[data-context=credit] .spacebar__posttext,.is-mobile[data-context=credit] .spacebar__pretext,.is-tablet[data-context=transition] .spacebar__posttext,.is-tablet[data-context=transition] .spacebar__pretext,.is-tablet[data-context=experience] .spacebar__posttext,.is-tablet[data-context=experience] .spacebar__pretext,.is-tablet[data-context=credit] .spacebar__posttext,.is-tablet[data-context=credit] .spacebar__pretext {
-	display: none!important
-}
-
 .spacebar__button svg path {
 	fill: #FFF
 }
 
 .spacebar {
-    color: #FFF;
 	position:absolute;
 	top:50%;
 	left:50%;
-	margin-top:180px;
+	margin-top:220px;
 	margin-left:-215px;
     
 }
 
-.spacebar__button__inner span {
-		font-size: 1pc;
-		padding-bottom: 0
-}
+
 
 .introduction{
 	position:absolute;
@@ -265,54 +151,55 @@ a, button {
 	margin-top:120px;
 	margin-left:-180px;
     font-family:Camphor;
-    font-style:normal;
-    color: #fff;    
+    font-style:normal;   
 }
 
 .wrapper_bl{
-	left: 10px;
-	bottom: 10px;
+	left: 0px;
+	bottom: 0px;
 	position: absolute;
 }
 
 
 .wrapper_br{
 	position:absolute;
-	right: 10px;
-	bottom: 10px;
+	right: 0px;
+	bottom: 0px;
 }
 
 .shareul{
-	float: right;
-	margin-left: 20px;
+	display: inline-block;
+	position: relative;
+	bottom: -2px;
 }
 
-.share__list__item{
-	margin-right: 10px;
+.shareul a{
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	margin-left: 8px;
 }
 
 .share{
 	margin-left: 30px;
+	display: inline-block;
+	color: #999;
 }
 
-.icon icon-douban{
-	bottom: 0px;
-}
-.icon icon-wechat{
-	bottom: 0px;
-}
-.icon icon-weibo{
-	bottom: 0px;
-}
 
-.fullscreen{
-	margin-left: 20px;
+#fullscreen{
+	margin-left: 30px;
+	cursor:pointer;
 }
 
 .icon {
 	display: inline-block;
     width: 1em;
 	height: 1em;
-	fill: currentColor;
-｝
+	fill: #fff;
+}
+
+.icon:hover {
+	fill: #e47839;
+}
 

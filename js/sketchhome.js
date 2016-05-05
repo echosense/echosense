@@ -108,22 +108,12 @@ var handdraw7=0;
 var handdraw9=0;
 
 
-var old_raindrop_y;
-var old_raindrop_x=[];
-var raindrop_y=-5;
-var raindrop_x=[];
-var rain_x;
-var handdraw=0;
-var rain_y;
-var count=1;
-var count_x=[];
-var count_y=[];
-var bg;
 
 var window_Height;
 var window_Width;
-
-
+var enlarge;
+var uiOpacity = 0;
+var uiHome;
 
 
 
@@ -132,7 +122,6 @@ var window_Width;
 function preload(){
   sound = loadSound('audio/theme of universe.mp3');
   //bg = loadImage("bg1.png");
-
 }
 
 function setup(){
@@ -146,6 +135,15 @@ function setup(){
   var homeCanvas=select('#defaultCanvas');
   homeCanvas.style("margin-top", top);
   homeCanvas.style("margin-left", left);
+
+  enlarge = document.getElementById('fullscreen');
+  enlarge.onclick = function(){
+    var fs = fullscreen();
+    fullscreen(!fs);
+  };
+
+  uiHome=select('#wrapper-elementframe');
+
   frameRate(60);
   sound.amp(1);
   sound.loop();
@@ -185,12 +183,8 @@ function setup(){
   stroke(255,255,255,180);
 
 
-  rain_y=random(0,window_Height);
-  raindrop_y = rain_y;
-  //background(bg);
 
-
-     
+  
 }
 
 
@@ -511,54 +505,65 @@ function draw() {
 
       } 
 
-      //if (n_cursor_x3==window_Height/4+240+16) {
-      //  saveCanvas('myCanvas', 'png');
-      //} 
-/*
-      //rain
-      if(n_cursor_x3>=window_Height/4+240){
-        strokeWeight(vol);
-        if(frameCount==1||raindrop_y>rain_y){
-          rain_x = random(0,window_Width);
-          rain_y = random(0,window_Height);
-          while(rain_x>window_Width/5&&rain_x<4*window_Width/5&&rain_y>window_Height/5&&rain_y<3*window_Height/4){
-            rain_x = random(0,window_Width);
-            rain_y = random(0,window_Height);        
-          }
-          raindrop_y = rain_y-random(10,20);
-          raindrop_x=[];
-          count_x[count] = rain_x;
-          count_y[count] = raindrop_y;
-          count++;
-        }
-
-        if(count>20){
-          noStroke();
-          fill(255,255,255,60);
-          rect(count_x[count-21]-40,count_y[count-21]-30,80,80);
-        }
-
-
-
-        for(j=0;j<=waveform.length;j++){
-          old_raindrop_y = raindrop_y;
-          old_raindrop_x[j] = raindrop_x[j];
-
-        }
-
-
-
-        raindrop_y+=1; 
-        for(i=0;i<=waveform.length;i++){
-          handdraw+=random(-0.1,0.1);
-          raindrop_x[i] = rain_x+handdraw+random(-6,6);   
-          stroke(0,0,0,255);            
-          line(old_raindrop_x[i],old_raindrop_y,raindrop_x[i],raindrop_y); 
-        } 
+      if (n_cursor_x3>=window_Height/4+240+15&&uiOpacity<=1) {
+        uiOpacity += 0.01;
+        uiHome.style("opacity", uiOpacity);
       } 
-*/
+
 }
 
 
+
+
+
+
+//下面这部分是我从p5.js官网上面找的 解决了fullscreen的问题
+
+p5.prototype.fullscreen = function(val) {
+  // no arguments, return fullscreen or not
+  if (typeof val === 'undefined') {
+    return document.fullscreenElement ||
+           document.webkitFullscreenElement ||
+           document.mozFullScreenElement ||
+           document.msFullscreenElement;
+  } else { // otherwise set to fullscreen or not
+    if (val) {
+      launchFullscreen(document.documentElement);
+    } else {
+      exitFullscreen();
+    }
+  }
+};
+
+function launchFullscreen(element) {
+  var enabled = document.fullscreenEnabled ||
+                document.webkitFullscreenEnabled ||
+                document.mozFullScreenEnabled ||
+                document.msFullscreenEnabled;
+  if (!enabled) {
+    throw new Error('Fullscreen not enabled in this browser.');
+  }
+  if(element.requestFullscreen) {
+    element.requestFullscreen();
+  } else if(element.mozRequestFullScreen) {
+    element.mozRequestFullScreen();
+  } else if(element.webkitRequestFullscreen) {
+    element.webkitRequestFullscreen();
+  } else if(element.msRequestFullscreen) {
+    element.msRequestFullscreen();
+  }
+}
+
+function exitFullscreen() {
+  if(document.exitFullscreen) {
+    document.exitFullscreen();
+  } else if(document.mozCancelFullScreen) {
+    document.mozCancelFullScreen();
+  } else if(document.webkitExitFullscreen) {
+    document.webkitExitFullscreen();
+  } else if (document.msExitFullscreen) {
+    document.msExitFullscreen();
+  }
+}
 
 
