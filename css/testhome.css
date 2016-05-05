@@ -314,5 +314,11 @@ a, button {
     width: 1em;
 	height: 1em;
 	fill: currentColor;
-｝
+    -webkit-transition: color .1s linear;
+	transition: color .1s linear
+    
+}
+.icon:hover{
+    color: #e47839  ;
+    }
 
