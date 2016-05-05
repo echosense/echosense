@@ -142,7 +142,7 @@ function setup(){
     fullscreen(!fs);
   };
 
-  uiHome=select('#wrapper-elementframe');
+  uiHome=select('#wrapper-elementframe'); //渐隐声明
 
   frameRate(60);
   sound.amp(1);
@@ -505,11 +505,11 @@ function draw() {
 
       } 
 
-      if (n_cursor_x3>=window_Height/4+240+15&&uiOpacity<=1) {
-        uiOpacity += 0.01;
+      if (n_cursor_x3>=window_Height/4+230&&uiOpacity<=1) {
+        uiOpacity += 0.008;
         uiHome.style("opacity", uiOpacity);
       } 
-
+//渐隐方法
 }
 
 
