@@ -45,6 +45,7 @@ body{
 	right: 30px;
 	bottom: 30px;
 	left: 30px;
+    font-family:Inconsolata;
     font-size: 16px
 }
 
@@ -107,7 +108,8 @@ a, button {
 	height: 3pc;
 	z-index: 2;
 	border-radius: 24px;
-	vertical-align: top
+	vertical-align: top;
+    font-family: Camphorbold;
 }
 
 .spacebar__button__inner span {
@@ -150,8 +152,12 @@ a, button {
 	left:50%;
 	margin-top:120px;
 	margin-left:-180px;
-    font-family:Camphor;
     font-style:normal;   
+}
+
+.introduction p {
+	font-family:camphor;
+    font-weight: 200;
 }
 
 .wrapper_bl{
@@ -197,9 +203,42 @@ a, button {
     width: 1em;
 	height: 1em;
 	fill: #fff;
+    -webkit-transition: color .1s linear;
+	transition: color .1s linear
 }
 
 .icon:hover {
 	fill: #e47839;
 }
 
+@font-face {
+	font-weight:400;
+    font-style:normal;
+    font-family:Camphor;
+    src:url(../font/camphor-bold.ttf) 
+}
+
+@font-face {
+	font-weight:200;
+    font-style:normal;
+    font-family:Camphor;
+    src:url(../font/camphor-light.ttf) 
+}
+
+@font-face {
+	font-weight:400;
+    font-style:normal;
+    font-family:Inconsolata;
+    src:url(../font/Inconsolata.ttf)
+}
+
+
+ .spacebar__posttext,.link--need-help,.link--underline,.spacebar__loading,.spacebar__posttext,.spacebar__pretext,.subtitle,.title--1,.title--artist,.wrapper--cover-title p,.wrapper--credits {
+	font-weight: 400;
+	font-family: Camphor
+}
+
+.spacebar__button__inner span {
+	font-weight: 200;
+	font-family: Camphor
+}
