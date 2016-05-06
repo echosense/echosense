@@ -111,7 +111,6 @@ var handdraw9=0;
 
 var window_Height;
 var window_Width;
-var enlarge;
 var uiOpacity = 0;
 var uiHome;
 
@@ -136,11 +135,26 @@ function setup(){
   homeCanvas.style("margin-top", top);
   homeCanvas.style("margin-left", left);
 
-  enlarge = document.getElementById('fullscreen');
+  var enlarge = document.getElementById('fullscreen');
+  var shrink = document.getElementById('windowscreen');
+  var enlarge2 = select('#fullscreen');
+  var shrink2 = select('#windowscreen');
   enlarge.onclick = function(){
     var fs = fullscreen();
     fullscreen(!fs);
+    enlarge2.style("opacity", 0);
+    shrink2.style("opacity", 1);
+    enlarge2.style("bottom", -1000);
+    shrink2.style("bottom", -16);
   };
+  shrink.onclick = function(){
+    var ws = fullscreen();
+    fullscreen(!ws);
+    enlarge2.style("opacity", 1);
+    shrink2.style("opacity", 0);
+    enlarge2.style("bottom", 0);
+    shrink2.style("bottom", -1000);
+  };  
 
   uiHome=select('#wrapper-elementframe'); //渐隐声明
 
@@ -243,7 +257,8 @@ function draw() {
       if(e_cursor_x<=window_Height/4+240+16){
         for(i=0;i<=waveform.length;i++){
           handdraw+=random(-0.05,0.05);
-          e_cursor_y[i] = e_loction+handdraw+random(-8,8);                 
+          e_cursor_y[i] = e_loction+handdraw+random(-8,8);   
+          if (e_old_cursor_y[i]==undefined) {e_old_cursor_y[i]=e_cursor_y[i];}
           line(e_old_cursor_y[i],e_old_cursor_x,e_cursor_y[i],e_cursor_x); 
         }
       }
@@ -270,7 +285,9 @@ function draw() {
         for(i=0;i<=waveform.length;i++){
           handdraw2+=random(-0.05,0.05);
           c_cursor_x[i] = (c_r+random(-8,8)+handdraw2)*cos(c_angle)+window_Width/2-268;
-          c_cursor_y[i] = 1.6*(c_r+random(-6,6)+handdraw2)*sin(c_angle)+window_Height/4+120+8;  
+          c_cursor_y[i] = 1.6*(c_r+random(-6,6)+handdraw2)*sin(c_angle)+window_Height/4+120+8; 
+          if (c_old_cursor_x[i]==undefined) {c_old_cursor_x[i]=c_cursor_x[i];}  
+          if (c_old_cursor_y[i]==undefined) {c_old_cursor_y[i]=c_cursor_y[i];}              
           line(c_old_cursor_x[i],c_old_cursor_y[i],c_cursor_x[i],c_cursor_y[i]);       
 
         }
@@ -283,7 +300,8 @@ function draw() {
       if(h_cursor_x<=window_Height/4+240+16){
         for(i=0;i<=waveform.length;i++){
           handdraw3+=random(-0.05,0.05);
-          h_cursor_y[i] = h_loction+handdraw3+random(-8,8);                 
+          h_cursor_y[i] = h_loction+handdraw3+random(-8,8); 
+          if (h_old_cursor_y[i]==undefined) {h_old_cursor_y[i]=h_cursor_y[i];}                 
           line(h_old_cursor_y[i],h_old_cursor_x,h_cursor_y[i],h_cursor_x); 
         }
       }
@@ -304,7 +322,9 @@ function draw() {
         h_cursor_x3+=1;
         for(i=0;i<=waveform.length;i++){
           handdraw3+=random(-0.05,0.05);
-          h_cursor_y3[i] = h_loction3+handdraw3+random(-8,8);                 
+          h_cursor_y3[i] = h_loction3+handdraw3+random(-8,8);
+          if (h_old_cursor_y3[i]==undefined) {h_old_cursor_y3[i]=h_cursor_y3[i];}                  
+                 
           line(h_old_cursor_y3[i],h_old_cursor_x3,h_cursor_y3[i],h_cursor_x3); 
         }
       }
@@ -319,7 +339,9 @@ function draw() {
         for(i=0;i<=waveform.length;i++){
           handdraw4+=random(-0.05,0.05);
           o_cursor_x[i] = (o_r+random(-8,8)*wide+handdraw4)*cos(o_angle)+window_Width/2-74;
-          o_cursor_y[i] = (o_r+random(-8,8)*wide+handdraw4)*sin(o_angle)+window_Height/4+120+8;  
+          o_cursor_y[i] = (o_r+random(-8,8)*wide+handdraw4)*sin(o_angle)+window_Height/4+120+8; 
+          if (o_old_cursor_x[i]==undefined) {o_old_cursor_x[i]=o_cursor_x[i];}
+          if (o_old_cursor_y[i]==undefined) {o_old_cursor_y[i]=o_cursor_y[i];}             
           line(o_old_cursor_x[i],o_old_cursor_y[i],o_cursor_x[i],o_cursor_y[i]);       
 
         }
@@ -341,7 +363,9 @@ function draw() {
         for(i=0;i<=waveform.length;i++){
           //handdraw5+=random(-0.05,0.05);
           s_cursor_x[i] = (s_r+random(-8,8))*cos(s_angle)+window_Width/2+84;
-          s_cursor_y[i] = (s_r+random(-8,8))*sin(s_angle)+window_Height/4+60+8;  
+          s_cursor_y[i] = (s_r+random(-8,8))*sin(s_angle)+window_Height/4+60+8;
+          if (s_old_cursor_x[i]==undefined) {s_old_cursor_x[i]=s_cursor_x[i];}
+          if (s_old_cursor_y[i]==undefined) {s_old_cursor_y[i]=s_cursor_y[i];}            
           line(s_old_cursor_x[i],s_old_cursor_y[i],s_cursor_x[i],s_cursor_y[i]);       
 
         }        
@@ -355,7 +379,9 @@ function draw() {
           for(i=0;i<=waveform.length;i++){
             //handdraw5+=random(-0.05,0.05);
             s_cursor_x2[i] = s_loctionx+random(-6,6);  
-            s_cursor_y2[i] = s_loctiony+random(-6,6);                 
+            s_cursor_y2[i] = s_loctiony+random(-6,6); 
+            if (s_old_cursor_x2[i]==undefined) {s_old_cursor_x2[i]=s_cursor_x2[i];}
+            if (s_old_cursor_y2[i]==undefined) {s_old_cursor_y2[i]=s_cursor_y2[i];}                   
             line(s_old_cursor_x2[i],s_old_cursor_y2[i],s_cursor_x2[i],s_cursor_y2[i]); 
           }
         }  
@@ -367,7 +393,7 @@ function draw() {
           for(i=0;i<=waveform.length;i++){
             //handdraw5+=random(-0.05,0.05);
             s_cursor_x2[i] = (s_r+random(-8,8))*cos(s_angle2)+window_Width/2+24;
-            s_cursor_y2[i] = (s_r+random(-8,8))*sin(s_angle2)+window_Height/4+180+8;  
+            s_cursor_y2[i] = (s_r+random(-8,8))*sin(s_angle2)+window_Height/4+180+8;            
             line(s_old_cursor_x2[i],s_old_cursor_y2[i],s_cursor_x2[i],s_cursor_y2[i]);       
 
           }
@@ -380,7 +406,8 @@ function draw() {
       if(e2_cursor_x<=window_Height/4+240+16){
         for(i=0;i<=waveform.length;i++){
           handdraw6+=random(-0.05,0.05);
-          e2_cursor_y[i] = e2_loction+handdraw6+random(-8,8);                 
+          e2_cursor_y[i] = e2_loction+handdraw6+random(-8,8);  
+          if (e2_old_cursor_y[i]==undefined) {e2_old_cursor_y[i]=e2_cursor_y[i];}                   
           line(e2_old_cursor_y[i],e2_old_cursor_x,e2_cursor_y[i],e2_cursor_x); 
         }
       }
@@ -409,7 +436,9 @@ function draw() {
       if(n_cursor_x<=window_Height/4+240+16){
         for(i=0;i<=waveform.length;i++){
           handdraw7+=random(-0.05,0.05);
-          n_cursor_y[i] = n_loction+handdraw7+random(-8,8);                 
+          n_cursor_y[i] = n_loction+handdraw7+random(-8,8); 
+          if (n_old_cursor_y[i]==undefined) {n_old_cursor_y[i]=n_cursor_y[i];}              
+                
           line(n_old_cursor_y[i],n_old_cursor_x,n_cursor_y[i],n_cursor_x); 
         }
       }
@@ -432,7 +461,9 @@ function draw() {
         n_cursor_x3+=1;
         for(i=0;i<=waveform.length;i++){
           handdraw7+=random(-0.05,0.05);
-          n_cursor_y3[i] = n_loction3+handdraw7+random(-8,8);                 
+          n_cursor_y3[i] = n_loction3+handdraw7+random(-8,8); 
+          if (n_old_cursor_y3[i]==undefined) {n_old_cursor_y3[i]=n_cursor_y3[i];}                     
+
           line(n_old_cursor_y3[i],n_old_cursor_x3,n_cursor_y3[i],n_cursor_x3); 
         }
       }
@@ -444,7 +475,9 @@ function draw() {
         for(i=0;i<=waveform.length;i++){
           //handdraw5+=random(-0.05,0.05);
           s2_cursor_x[i] = (s2_r+random(-8,8))*cos(s2_angle)+window_Width/2+356;
-          s2_cursor_y[i] = (s2_r+random(-8,8))*sin(s2_angle)+window_Height/4+60+8;  
+          s2_cursor_y[i] = (s2_r+random(-8,8))*sin(s2_angle)+window_Height/4+60+8; 
+          if (s2_old_cursor_x[i]==undefined) {s2_old_cursor_x[i]=s2_cursor_x[i];}    
+          if (s2_old_cursor_y[i]==undefined) {s2_old_cursor_y[i]=s2_cursor_y[i];}                 
           line(s2_old_cursor_x[i],s2_old_cursor_y[i],s2_cursor_x[i],s2_cursor_y[i]);       
 
         }        
@@ -458,7 +491,9 @@ function draw() {
           for(i=0;i<=waveform.length;i++){
             //handdraw5+=random(-0.05,0.05);
             s2_cursor_x2[i] = s2_loctionx+random(-6,6);  
-            s2_cursor_y2[i] = s2_loctiony+random(-6,6);                 
+            s2_cursor_y2[i] = s2_loctiony+random(-6,6); 
+            if (s2_old_cursor_x2[i]==undefined) {s2_old_cursor_x2[i]=s2_cursor_x2[i];}    
+            if (s2_old_cursor_y2[i]==undefined) {s2_old_cursor_y2[i]=s2_cursor_y2[i];}                  
             line(s2_old_cursor_x2[i],s2_old_cursor_y2[i],s2_cursor_x2[i],s2_cursor_y2[i]); 
           }
         }  
@@ -483,7 +518,9 @@ function draw() {
       if(e3_cursor_x<=window_Height/4+240+16){
         for(i=0;i<=waveform.length;i++){
           handdraw9+=random(-0.05,0.05);
-          e3_cursor_y[i] = e3_loction+handdraw9+random(-8,8);                 
+          e3_cursor_y[i] = e3_loction+handdraw9+random(-8,8); 
+          if (e3_old_cursor_y[i]==undefined) {e3_old_cursor_y[i]=e3_cursor_y[i];}                 
+                
           line(e3_old_cursor_y[i],e3_old_cursor_x,e3_cursor_y[i],e3_cursor_x); 
         }
       }
