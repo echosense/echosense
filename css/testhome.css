@@ -12,19 +12,21 @@ body{
     z-index: -99;
 }
 
-/*
+
 #bg{
+/*
 	position:absolute;
 	top:50%;
 	left:50%;
 	margin-top:-666px;
 	margin-left:-1000px;
-	background-image: url(../img/b3-1.jpg);
+	background-image: url(../img/home_bg.PNG);
 	z-index: -101;
 	width: 2000px;
 	height: 1333px;
+    */
 }
-*/
+
 #video-background {
 /*  making the video fullscreen  */
   position: fixed;
@@ -215,21 +217,21 @@ a, button {
 	font-weight:400;
     font-style:normal;
     font-family:Camphor;
-    src:url(font/camphor-bold.ttf) 
+    src:url(../font/camphor-bold.ttf) 
 }
 
 @font-face {
 	font-weight:200;
     font-style:normal;
     font-family:Camphor;
-    src:url(font/camphor-light.ttf) 
+    src:url(../font/camphor-light.ttf) 
 }
 
 @font-face {
 	font-weight:400;
     font-style:normal;
     font-family:Inconsolata;
-    src:url(font/Inconsolata.ttf)
+    src:url(../font/Inconsolata.ttf)
 }
 
 
