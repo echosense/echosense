@@ -24,16 +24,16 @@ function setup(){
   homeCanvas.style("margin-top", top);
   homeCanvas.style("margin-left", left);
 
-  gao = window_Height/3;
+  gao = window_Height/2-93.75;
   frameRate(60);
-  cursor_x=window_Width/3;
+  cursor_x=window_Width/2-482;
   sound.amp(1);
   sound.loop();
   fft = new p5.FFT(0.99,16);
   noFill();
   strokeJoin(ROUND);
   strokeCap(ROUND);
-  stroke(0,0,0,80);
+  stroke(0,0,0,50);
 }
 
 
@@ -41,9 +41,9 @@ function draw() {
 
     var waveform = fft.waveform();
     var vol = sound.getLevel();
-    strokeWeight(vol*2.5);
+    strokeWeight(vol*4);
 
-    if(cursor_x<window_Width*2/3){
+    if(cursor_x<(window_Width/2+479)&&gao<(window_Height/2+270)){
       for(j=0;j<=waveform.length;j++){
         old_cursor_x = cursor_x;
         old_cursor_y[j] = cursor_y[j];
@@ -65,8 +65,8 @@ function draw() {
       }
     }
 
-    if(cursor_x>window_Width*2/3){
-      cursor_x=window_Width/3;
+    if(cursor_x>(window_Width/2+478)){
+      cursor_x=window_Width/2-482;
       gao+=10;
     }
 
