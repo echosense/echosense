@@ -24,7 +24,7 @@ function setup(){
   homeCanvas.style("margin-top", top);
   homeCanvas.style("margin-left", left);
 
-  gao = window_Height/2-93.75;
+  gao = window_Height/2;
   frameRate(60);
   cursor_x=window_Width/2-482;
   sound.amp(1);
@@ -43,7 +43,7 @@ function draw() {
     var vol = sound.getLevel();
     strokeWeight(vol*4);
 
-    if(cursor_x<(window_Width/2+479)&&gao<(window_Height/2+270)){
+    if(cursor_x<(window_Width/2+479)&&gao<(window_Height/2+268)){
       for(j=0;j<=waveform.length;j++){
         old_cursor_x = cursor_x;
         old_cursor_y[j] = cursor_y[j];

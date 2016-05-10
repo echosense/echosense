@@ -108,13 +108,38 @@ var handdraw7=0;
 var handdraw9=0;
 
 
-
+var homeCanvas;
+var homeCanvas_click;
+var homeCanvas_mark=0;
 var window_Height;
 var window_Width;
 var uiOpacity = 0;
 var uiHome;
-
-
+var uiSpacebar;
+var uiIntroduction;
+var canvasOpacity = 1;
+var canvasOpacity_mark=0;
+var spacebardown_mark=0;
+var spacebardown=0;
+var spacebarInner;
+var spacebar_button;
+var enlarge;
+var shrink;
+var enlarge2;
+var shrink2;
+var fullscreen_mark=0;
+var select_icon;
+var iconOpacity=0;
+var speed_a=0;
+var speed_b=0;
+var speed_c=0;
+var speed_d=0;
+var speed_e=0;
+var select_icon_mark=0;
+var bgOpacity=0;
+var canvasbg;
+var bgcolor;
+var selectOpacity=1;
 
 
 
@@ -127,18 +152,27 @@ function setup(){
 
   createCanvas(windowWidth, windowHeight);
   //document.getElementsByTagName("body")[0].setAttribute("style","background-image: url(IMG_9129-.jpg)");
+
+  //canvas居中
   window_Width=windowWidth;
   window_Height=windowHeight;
   var top = window_Height/2*(-1);
   var left = window_Width/2*(-1);
-  var homeCanvas=select('#defaultCanvas');
+  homeCanvas_click=document.getElementById('wrapper-elementframe');
+  homeCanvas_click.onclick = function(){
+    homeCanvas_mark=1;
+  }
+  homeCanvas=select('#defaultCanvas');
   homeCanvas.style("margin-top", top);
   homeCanvas.style("margin-left", left);
+  //canvas居中
 
-  var enlarge = document.getElementById('fullscreen');
-  var shrink = document.getElementById('windowscreen');
-  var enlarge2 = select('#fullscreen');
-  var shrink2 = select('#windowscreen');
+
+  //全屏
+  enlarge = document.getElementById('fullscreen');
+  shrink = document.getElementById('windowscreen');
+  enlarge2 = select('#fullscreen');
+  shrink2 = select('#windowscreen');
   enlarge.onclick = function(){
     var fs = fullscreen();
     fullscreen(!fs);
@@ -154,9 +188,42 @@ function setup(){
     shrink2.style("opacity", 0);
     enlarge2.style("bottom", 0);
     shrink2.style("bottom", -1000);
-  };  
+  }; 
+  //全屏 
 
-  uiHome=select('#wrapper-elementframe'); //渐隐声明
+  //spacebar
+  var spacebar = document.getElementById('spacebar__button');
+  spacebar_button = select('#spacebar__button');
+  spacebarInner = select('#spacebar__button__inner');
+  spacebar.onclick = function(){
+    canvasOpacity_mark=1;
+  };
+  spacebar.onmousedown = function(){
+    spacebardown_mark=1;
+  };
+  spacebar.onmouseup = function(){
+    spacebardown_mark=0;
+  };
+
+  //spacebar
+
+  //渐隐声明
+  uiHome=select('#wrapper-elementframe');
+  uiSpacebar=select('#spacebar');
+  uiIntroduction=select('#introduction');
+  //渐隐声明
+
+  //选择页
+  select_icon=select('#select_icon')
+  var select_icon_=document.getElementById('select_icon');
+  select_icon_.onclick = function(){
+    select_icon_mark=1;
+  }
+  canvasbg=select("#canvasbg");
+  bgcolor=select("#bgcolor");
+  //选择页
+
+
 
   frameRate(60);
   sound.amp(1);
@@ -542,12 +609,68 @@ function draw() {
 
       } 
 
-      if (n_cursor_x3>=window_Height/4+230&&uiOpacity<=1) {
-        uiOpacity += 0.008;
+//渐隐方法
+      if (n_cursor_x3>=window_Height/4+230&&uiOpacity<=1&&canvasOpacity_mark==0&&homeCanvas_mark==0) {
+        speed_b +=0.0002;
+        uiOpacity += speed_b;
+        uiHome.style("opacity", uiOpacity);
+      } 
+
+      if (uiOpacity<=1&&canvasOpacity_mark==0&&homeCanvas_mark==1) {
+        speed_c +=0.0002;
+        uiOpacity += speed_c;
         uiHome.style("opacity", uiOpacity);
       } 
 //渐隐方法
+
+//点击spacebar后
+      if(canvasOpacity_mark==1&&canvasOpacity>=0){
+        speed_d =0.01;
+        canvasOpacity-=speed_d;
+        spacebar_button.style("cursor","default");
+        homeCanvas.style("opacity", canvasOpacity);
+        uiSpacebar.style("opacity", canvasOpacity);
+        uiIntroduction.style("opacity", canvasOpacity);
+      }
+
+      if(canvasOpacity_mark==1&&canvasOpacity<0.01&&iconOpacity<=1){
+
+        speed_a+=0.0002;
+        iconOpacity+=speed_a;
+
+        select_icon.style("opacity",iconOpacity);
+        select_icon.style("z-index",1);
+      }
+//点击spacebar后
+
+
+//spacebardown 动画
+      if(spacebardown_mark==1&&spacebardown<=8){
+        spacebardown+=1.5;
+        spacebarInner.style("margin-top",spacebardown);
+      }
+
+      if(spacebardown_mark==0&&spacebardown>=0){
+        spacebardown-=1.5;
+        spacebarInner.style("margin-top",spacebardown);
+      }
+//spacebardown 动画
+
+//点击selecticon后
+      if (select_icon_mark==1&&bgOpacity<=1) {
+        canvasbg.style("z-index",2);
+        bgcolor.style("z-index",1);
+        speed_e+=0.0002;
+        bgOpacity+=speed_e;
+        canvasbg.style("opacity",bgOpacity);
+        bgcolor.style("opacity",bgOpacity);
+      }
+//点击selecticon后
+
 }
+
+
+
 
 
 
@@ -603,4 +726,44 @@ function exitFullscreen() {
   }
 }
 
+//键盘监听
+document.onkeydown=function(event){ 
+  var e = event || window.event || arguments.callee.caller.arguments[0]; 
+  if(e && e.keyCode==32){
+    event.preventDefault();
 
+    spacebardown_mark=1;
+  }
+
+  if(e && e.keyCode==70){
+    var qs = fullscreen();
+    fullscreen(!qs);
+    fullscreen_mark+=1;
+    var fullscreen_mark_=Math.pow(-1,fullscreen_mark);
+    if (fullscreen_mark_<0) {
+      enlarge2.style("opacity", 0);
+      shrink2.style("opacity", 1);
+      enlarge2.style("bottom", -1000);
+      shrink2.style("bottom", -16);
+      fullscreen_mark=1;
+    };
+    if (fullscreen_mark_>0) {
+        enlarge2.style("opacity", 1);
+        shrink2.style("opacity", 0);
+        enlarge2.style("bottom", 0);
+        shrink2.style("bottom", -1000);
+      fullscreen_mark=0;
+    };
+  }
+} 
+
+document.onkeyup=function(event){ 
+  var e_ = event || window.event || arguments.callee.caller.arguments[0]; 
+  if(e_ && e_.keyCode==32 ){
+    event.preventDefault();
+
+    spacebardown_mark=0;
+    canvasOpacity_mark=1;
+  }
+} 
+//键盘监听
