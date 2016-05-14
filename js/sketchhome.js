@@ -97,6 +97,7 @@ var e3_cursor_x2=0;
 var e3_cursor_y2=[];
 var e3_loction2=0;
 var wide = 1;
+var uitop=30;
 
 
 var handdraw=0;
@@ -144,7 +145,7 @@ var selectOpacity=1;
 
 
 function preload(){
-  sound = loadSound('audio/theme of universe.mp3');
+  sound = loadSound('audio/Artur Rubinstein - Nocturne No. 1, Op. 32 in B.mp3');
   //bg = loadImage("bg1.png");
 }
 
@@ -658,14 +659,32 @@ function draw() {
 
 //点击selecticon后
       if (select_icon_mark==1&&bgOpacity<=1) {
-        canvasbg.style("z-index",2);
+        canvasbg.style("z-index",3);
         bgcolor.style("z-index",1);
+        uiHome.style("z-index",2);
         speed_e+=0.0001;
         bgOpacity+=speed_e;
         canvasbg.style("opacity",bgOpacity);
-        bgcolor.style("opacity",(bgOpacity-0.1));
+        bgcolor.style("opacity",(bgOpacity-0.15));
       }
+      var condition1 = window_Height-100;
+      if(bgOpacity>=0.9&&uiOpacity>=0&&mouseY<condition1){
+        uitop-=0.3;
+        uiOpacity-=0.02;
+        uiHome.style("top",(uitop+"px"));
+        uiHome.style("bottom",(uitop+"px"));
+        uiHome.style("opacity",uiOpacity);
+
+      }
+
+      if (bgOpacity>=0.99&&uiOpacity<=1&&mouseY>condition1) {
+        uitop+=0.3;
+        uiOpacity+=0.02;
+        uiHome.style("bottom",(uitop+"px"));
+        uiHome.style("opacity",uiOpacity);
+      };
 //点击selecticon后
+
 
 }
 
