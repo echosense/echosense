@@ -50,11 +50,14 @@ a, button {
 
 
 .link--orange {
-	transition: color .1s linear
+	transition: color .1s linear;
+
+
 }
 
 .link--orange:hover {
-	color: #e47839
+	color: #e47839;
+	cursor:pointer;
 }
 
 
@@ -78,6 +81,7 @@ a, button {
 }
 
 .wrapper_bl{
+	fill:#fff;
 	opacity: 0;
 	left: 0px;
 	bottom: 0px;
@@ -86,10 +90,38 @@ a, button {
 
 
 .wrapper_br{
+	fill:#fff;
 	opacity: 0;
 	position:absolute;
 	right: 0px;
 	bottom: 0px;
+}
+
+.wrapper_tl{
+	fill:#fff;
+	opacity: 0;
+	left: 0px;
+	top: 0px;
+	position: absolute;
+}
+
+
+.wrapper_tr{
+	fill:#fff;
+	opacity: 0;
+	position:absolute;
+	right: 0px;
+	top: 0px;
+}
+
+.save{
+	display: inline-block;
+	margin-left: 8px;
+}
+
+.print{
+	display: inline-block;
+	margin-left: 8px;
 }
 
 .shareul{
@@ -121,7 +153,6 @@ a, button {
 	display: inline-block;
     width: 1em;
 	height: 1em;
-	fill: #fff;
     -webkit-transition: color .1s linear;
 	transition: color .1s linear
 }
