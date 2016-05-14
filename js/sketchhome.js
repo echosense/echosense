@@ -610,14 +610,14 @@ function draw() {
       } 
 
 //渐隐方法
-      if (n_cursor_x3>=window_Height/4+230&&uiOpacity<=1&&canvasOpacity_mark==0&&homeCanvas_mark==0) {
-        speed_b +=0.0002;
+      if (n_cursor_x3>=window_Height/4+230&&uiOpacity<=0.8&&canvasOpacity_mark==0&&homeCanvas_mark==0) {
+        speed_b +=0.0001;
         uiOpacity += speed_b;
         uiHome.style("opacity", uiOpacity);
       } 
 
-      if (uiOpacity<=1&&canvasOpacity_mark==0&&homeCanvas_mark==1) {
-        speed_c +=0.0002;
+      if (uiOpacity<=0.8&&canvasOpacity_mark==0&&homeCanvas_mark==1) {
+        speed_c +=0.0001;
         uiOpacity += speed_c;
         uiHome.style("opacity", uiOpacity);
       } 
@@ -633,9 +633,9 @@ function draw() {
         uiIntroduction.style("opacity", canvasOpacity);
       }
 
-      if(canvasOpacity_mark==1&&canvasOpacity<0.01&&iconOpacity<=1){
+      if(canvasOpacity_mark==1&&canvasOpacity<0.01&&iconOpacity<=0.8){
 
-        speed_a+=0.0002;
+        speed_a+=0.0001;
         iconOpacity+=speed_a;
 
         select_icon.style("opacity",iconOpacity);
@@ -660,10 +660,10 @@ function draw() {
       if (select_icon_mark==1&&bgOpacity<=1) {
         canvasbg.style("z-index",2);
         bgcolor.style("z-index",1);
-        speed_e+=0.0002;
+        speed_e+=0.0001;
         bgOpacity+=speed_e;
         canvasbg.style("opacity",bgOpacity);
-        bgcolor.style("opacity",bgOpacity);
+        bgcolor.style("opacity",(bgOpacity-0.1));
       }
 //点击selecticon后
 
