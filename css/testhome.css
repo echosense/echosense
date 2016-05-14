@@ -13,20 +13,6 @@ body{
 }
 
 
-#bg{
-/*
-	position:absolute;
-	top:50%;
-	left:50%;
-	margin-top:-666px;
-	margin-left:-1000px;
-	background-image: url(../img/home_bg.PNG);
-	z-index: -101;
-	width: 2000px;
-	height: 1333px;
-    */
-}
-
 #video-background {
 /*  making the video fullscreen  */
   position: fixed;
@@ -41,7 +27,7 @@ body{
 
 
 #wrapper-elementframe{
-	opacity: 0;
+	opacity: 1;
 	position: absolute;
 	top: 30px;
 	right: 30px;
@@ -71,90 +57,18 @@ a, button {
 	color: #e47839
 }
 
-.spacebar__posttext,.spacebar__pretext {
-	position: relative;
-	font-size: 20px;
-	line-height: 3pc;
-	white-space: nowrap;
-	display: inline-block;
-	vertical-align: top;
-	font-weight: bold;
-    -webkit-font-smoothing: antialiased;
-}
 
-.spacebar__button {
-	position: relative;
-	width: 140px;
-	height: 3pc;
-	margin-left: 5px;
-	margin-right: 5px;
-	-webkit-tap-highlight-color: transparent;
-	display: inline-block;
-	vertical-align: top;
-	margin-bottom: 2px;
-	/*user-select: none
-	user-select: none*/
-	cursor:pointer;
-}
-
-.spacebar__button__inner {
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
-	position: absolute;
-	left: 50%;
-	top: 0;
-	-webkit-transform: scale(0) translate(-50%,0);
-	-ms-transform: scale(0) translate(-50%,0);
-	transform: scale(0) translate(-50%,0);
-	border: 2px solid #fff;
-	width: 3pc;
-	height: 3pc;
-	z-index: 2;
-	border-radius: 24px;
-	vertical-align: top;
-    font-family: Camphorbold;
-}
-
-
-
-.spacebar__button__inner span {
-	position: relative;
-	display: block;
-	font-size: 17px;
-	line-height: 42px;
-	margin: auto
-}
-
-.spacebar__svg {
-	position: absolute;
-	top: 0;
-	left: 0;
-	display: block;
-	width: 140px;
-	height: 56px;
-	z-index: 1;
-	background-image: url(../img/button.png);
-}
-
-.spacebar {
-	position:absolute;
-	top:100%;
-	left:50%;
-	margin-top:-90px;
-	margin-left:-214px;
-
-    
-}
 
 
 
 .introduction{
+	opacity: 0;
 	font-size: 18px;
 	position:absolute;
 	top:25%;
 	left:50%;
-	margin-top:330px;
-	margin-left:-203px;
+	margin-top:320px;
+	margin-left:-202px;
     font-style:normal;   
 }
 
@@ -164,6 +78,7 @@ a, button {
 }
 
 .wrapper_bl{
+	opacity: 0;
 	left: 0px;
 	bottom: 0px;
 	position: absolute;
@@ -171,6 +86,7 @@ a, button {
 
 
 .wrapper_br{
+	opacity: 0;
 	position:absolute;
 	right: 0px;
 	bottom: 0px;
@@ -236,15 +152,8 @@ a, button {
 }
 
 
- .spacebar__posttext,.link--need-help,.link--underline,.spacebar__loading,.spacebar__posttext,.spacebar__pretext,.subtitle,.title--1,.title--artist,.wrapper--cover-title p,.wrapper--credits {
-	font-weight: 400;
-	font-family: Camphor
-}
 
-.spacebar__button__inner span {
-	font-weight: 200;
-	font-family: Camphor
-}
+
 
 .icon-shrink2{
 	opacity: 0;
@@ -305,5 +214,128 @@ a, button {
 	width: 100%;
 	height: 100%;
 	background-color: #e6e6e6;
+}
+
+.spacebar__posttext,.spacebar__pretext {
+	opacity: 0;
+	position: relative;
+	font-size: 24px;
+	line-height: 3pc;
+	white-space: nowrap;
+	display: inline-block;
+	vertical-align: top;
+}
+
+.spacebar {
+	position:absolute;
+	top:100%;
+	left:50%;
+	margin-top:-100px;
+	margin-left:-234px;
+
+    
+}
+
+ .spacebar__posttext,.link--need-help,.link--underline,.spacebar__loading,.spacebar__posttext,.spacebar__pretext,.subtitle,.title--1,.title--artist,.wrapper--cover-title p,.wrapper--credits {
+	font-weight: 400;
+	font-family: Camphor
+}
+
+
+.spacebar_bg{
+	position: relative;
+	display: inline-block;
+	width: 140px;
+	height: 56px;
+	z-index: 1;
+	text-align:center;
+	}
+
+.spacebar_outline{
+	opacity: 0;
+	position: absolute;
+	left:77px;
+	top: -9px;
+	display: inline-block;
+	width: 140px;
+	height: 56px;
+	z-index: 0;
+	background-image: url(../img/button.png);
+	}
+
+.btn {
+	opacity: 0;
+	width: 48px;
+	height: 48px;
+	position: relative;
+	background-color: transparent;
+	border: 2px solid #fff;
+	border-radius: 50px;
+	font-weight: 400;
+	font-size: 1.2em;
+	cursor: pointer;
+	overflow: hidden;
+	outline:none;
+}
+
+span{
+	opacity: 0;
+	display: block;
+	margin-bottom: 5px;
+}
+
+.btn.active {
+  -webkit-animation: upload 3s ease-in-out forwards;
+          animation: upload 3s ease-in-out forwards;
+}
+
+
+
+@-webkit-keyframes upload {
+  0% {
+    width: 48px;
+    height: 48px;
+    background-color: transparent;
+  }
+  10% {
+    width: 40px;
+    height: 40px;
+    background-color: transparent;
+  }
+  30% {
+    width: 140px;
+    height: 48px;
+    background-color: transparent;  
+  }
+
+  100% {
+    width: 140px;
+    height: 48px;
+    background-color: transparent;
+  }
+}
+
+@keyframes upload {
+  0% {
+    width: 48px;
+      height: 48px;
+    background-color: transparent;
+  }
+  10% {
+    width: 40px;
+    height: 40px;
+    background-color: transparent;
+  }
+  30% {
+    width: 140px;
+    height: 48px;
+    background-color: transparent;  
+  }
+
+  100% {
+    width: 140px;
+    height: 48px;
+    background-color: transparent;
+  }
 }
 

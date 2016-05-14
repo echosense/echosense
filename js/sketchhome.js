@@ -114,10 +114,18 @@ var homeCanvas_click;
 var homeCanvas_mark=0;
 var window_Height;
 var window_Width;
+
 var uiOpacity = 0;
 var uiHome;
+var uiLeft;
+var uiRight;
 var uiSpacebar;
+var uiButtonoutline;
+var uiPretext;
+var uiPosttext;
+var uiSpan;
 var uiIntroduction;
+
 var canvasOpacity = 1;
 var canvasOpacity_mark=0;
 var spacebardown_mark=0;
@@ -136,11 +144,21 @@ var speed_b=0;
 var speed_c=0;
 var speed_d=0;
 var speed_e=0;
+var speed_f=0;
+var speed_g=0;
+var speed_h=0;
+var speed_i=0;
 var select_icon_mark=0;
 var bgOpacity=0;
 var canvasbg;
 var bgcolor;
 var selectOpacity=1;
+var animatemark=0;
+var animateOpacity=0;
+var spanOpacity=0;
+var btnbgOpacity=0;
+var btntop=-9;
+var introductionOpacity=0;
 
 
 
@@ -209,6 +227,12 @@ function setup(){
   //spacebar
 
   //渐隐声明
+  uiLeft=select('#uileft');
+  uiRight=select('#uiright');
+  uiButtonoutline=select('#buttonoutline');
+  uiPretext=select('#pretext');
+  uiPosttext=select('#posttext');
+  uiSpan=select('#span');
   uiHome=select('#wrapper-elementframe');
   uiSpacebar=select('#spacebar');
   uiIntroduction=select('#introduction');
@@ -610,19 +634,92 @@ function draw() {
 
       } 
 
-//渐隐方法
-      if (n_cursor_x3>=window_Height/4+230&&uiOpacity<=0.8&&canvasOpacity_mark==0&&homeCanvas_mark==0) {
-        speed_b +=0.0001;
-        uiOpacity += speed_b;
-        uiHome.style("opacity", uiOpacity);
+//UI渐显
+
+      
+
+      if (n_cursor_x3>=window_Height/4+240&&uiOpacity<=0.8&&canvasOpacity_mark==0&&homeCanvas_mark==0) {
+        if (introductionOpacity<=10) {
+          speed_i += 0.0003;
+          introductionOpacity+=speed_i;
+          uiIntroduction.style("opacity", introductionOpacity);
+        }
+        if(introductionOpacity>=9.9&&animateOpacity<=1){
+          speed_f += 0.0003;
+          animateOpacity+=speed_f;
+          spacebarInner.style("opacity", animateOpacity);
+        }
+        if(animatemark==0&&animateOpacity>=0.4){
+          spacebarInner.addClass('active');
+          animatemark=1;
+        }
+        if(animateOpacity>=0.9&&btnbgOpacity<=1){
+          speed_b += 0.001;
+          spanOpacity += speed_b;
+          uiSpan.style("opacity", spanOpacity);
+        }
+        if(spanOpacity>=0.9&&btnbgOpacity<=1){
+          speed_g += 0.002;
+          btnbgOpacity += speed_g;
+          uiButtonoutline.style("opacity", btnbgOpacity);
+          if(btntop<=0){
+            btntop+=0.3;
+            uiButtonoutline.style("top", (btntop+"px"));
+          }          
+        }
+        if(btnbgOpacity>=0.9&&uiOpacity<=1){
+          speed_h+=0.0003;
+          uiOpacity+=speed_h;
+          uiLeft.style("opacity", uiOpacity);
+          uiRight.style("opacity", uiOpacity);
+          uiPretext.style("opacity", uiOpacity);
+          uiPosttext.style("opacity", uiOpacity);
+
+
+        }
       } 
 
       if (uiOpacity<=0.8&&canvasOpacity_mark==0&&homeCanvas_mark==1) {
-        speed_c +=0.0001;
-        uiOpacity += speed_c;
-        uiHome.style("opacity", uiOpacity);
+        if (introductionOpacity<=1) {
+          speed_i += 0.0003;
+          introductionOpacity+=speed_i;
+          uiIntroduction.style("opacity", introductionOpacity);
+        }
+        if(introductionOpacity>=0.9&&animateOpacity<=1){
+          speed_f += 0.0003;
+          animateOpacity+=speed_f;
+          spacebarInner.style("opacity", animateOpacity);
+        }
+        if(animatemark==0&&animateOpacity>=0.4){
+          spacebarInner.addClass('active');
+          animatemark=1;
+        }
+        if(animateOpacity>=0.9&&btnbgOpacity<=1){
+          speed_b += 0.001;
+          spanOpacity += speed_b;
+          uiSpan.style("opacity", spanOpacity);
+        }
+        if(spanOpacity>=0.9&&btnbgOpacity<=1){
+          speed_g += 0.002;
+          btnbgOpacity += speed_g;
+          uiButtonoutline.style("opacity", btnbgOpacity);
+          if(btntop<=0){
+            btntop+=0.3;
+            uiButtonoutline.style("top", (btntop+"px"));
+          }          
+        }
+        if(btnbgOpacity>=0.9&&uiOpacity<=1){
+          speed_h+=0.0003;
+          uiOpacity+=speed_h;
+          uiLeft.style("opacity", uiOpacity);
+          uiRight.style("opacity", uiOpacity);
+          uiPretext.style("opacity", uiOpacity);
+          uiPosttext.style("opacity", uiOpacity);
+
+
+        }
       } 
-//渐隐方法
+//UI渐显
 
 //点击spacebar后
       if(canvasOpacity_mark==1&&canvasOpacity>=0){

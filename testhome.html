@@ -5,7 +5,7 @@
         <script language="javascript" type="text/javascript" src="js/p5.js"></script>
  	    <script language="javascript" type="text/javascript" src="js/p5.sound.js"></script>
  	    <script language="javascript" type="text/javascript" src="js/p5.dom.js"></script>
-	    <script language="javascript" type="text/javascript" src="js/sketchhome.js"></script>
+        <script language="javascript" type="text/javascript" src="js/sketchhome.js"></script>
  	    <style> body {padding: 0; margin: 0;}</style>
     </head>
     
@@ -74,7 +74,7 @@
 
 
         <!--页面左下版权和文字说明-->
-        <div class="wrapper_bl">
+        <div class="wrapper_bl" id="uileft">
             ©&nbsp;Copyright Echo Sense 2016 - 
             <a href="http://by.cuc.edu.cn/" class="link--orange" tabindex="-1">About</a> - 
             <a href="http://by.cuc.edu.cn/" target="blank" class="link--orange" tabindex="-1">Us</a>
@@ -83,7 +83,7 @@
              	 
 
         <!--页面右下分享和全屏。豆瓣、微博、微信--> 
-        <div class="wrapper_br">
+        <div class="wrapper_br" id="uiright">
             <a href="" class="link--orange" target="blank">#EchoSense</a>	
             <div class="share">
                 Share 
@@ -126,20 +126,18 @@
             
             
         <div id="spacebar" class="spacebar">  
-            <div class="spacebar__pretext">
-                <span>Press&nbsp;&nbsp; </span>
+            <div class="spacebar__pretext" id="pretext">
+                Press&nbsp;&nbsp; 
             </div>
-            <!-- <a href="testselect.html"> -->
-                <button id="spacebar__button" class="spacebar__button">
-                    <div id="spacebar__button__inner" class="spacebar__button__inner" style="opacity: 1; width: 140px; transform: translate(-50%, 0%) matrix(1, 0, 0, 1, 0, 0);">
-                        <span>spacebar</span>
-                    </div>
-
-                    <div class="spacebar__svg"></div>
-                </button> 
-            <!-- </a> -->  
+            <div class="spacebar_bg" id="spacebar__button">
+                <button class="btn" id="spacebar__button__inner">
+                    <span id="span">spacebar</span>
+                </button>
+            </div>
+            <div class="spacebar_outline" id="buttonoutline">
+            </div>
             
-            <div class="spacebar__posttext">
+            <div class="spacebar__posttext" id="posttext">
                 &nbsp;&nbsp;to launch Echo Sense
             </div>
         </div>
