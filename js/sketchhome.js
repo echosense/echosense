@@ -119,6 +119,8 @@ var uiOpacity = 0;
 var uiHome;
 var uiLeft;
 var uiRight;
+var uiRighttop;
+var uiLefttop;
 var uiSpacebar;
 var uiButtonoutline;
 var uiPretext;
@@ -148,6 +150,9 @@ var speed_f=0;
 var speed_g=0;
 var speed_h=0;
 var speed_i=0;
+var speed_j=0;
+var speed_k=0;
+var speed_l=0;
 var select_icon_mark=0;
 var bgOpacity=0;
 var canvasbg;
@@ -215,7 +220,9 @@ function setup(){
   spacebar_button = select('#spacebar__button');
   spacebarInner = select('#spacebar__button__inner');
   spacebar.onclick = function(){
-    canvasOpacity_mark=1;
+    if(uiOpacity>=0.79){
+      canvasOpacity_mark=1;
+    }
   };
   spacebar.onmousedown = function(){
     spacebardown_mark=1;
@@ -236,6 +243,8 @@ function setup(){
   uiHome=select('#wrapper-elementframe');
   uiSpacebar=select('#spacebar');
   uiIntroduction=select('#introduction');
+  uiRighttop=select('#wrapper_tr');
+  uiLefttop=select('#wrapper_tl');
   //渐隐声明
 
   //选择页
@@ -639,12 +648,12 @@ function draw() {
       
 
       if (n_cursor_x3>=window_Height/4+240&&uiOpacity<=0.8&&canvasOpacity_mark==0&&homeCanvas_mark==0) {
-        if (introductionOpacity<=10) {
+        if (introductionOpacity<=6) {
           speed_i += 0.0003;
           introductionOpacity+=speed_i;
           uiIntroduction.style("opacity", introductionOpacity);
         }
-        if(introductionOpacity>=9.9&&animateOpacity<=1){
+        if(introductionOpacity>=5.9&&animateOpacity<=1){
           speed_f += 0.0003;
           animateOpacity+=speed_f;
           spacebarInner.style("opacity", animateOpacity);
@@ -755,17 +764,25 @@ function draw() {
 //spacebardown 动画
 
 //点击selecticon后
-      if (select_icon_mark==1&&bgOpacity<=1) {
+      if (select_icon_mark==1&&bgOpacity<=3) {
         canvasbg.style("z-index",3);
         bgcolor.style("z-index",1);
         uiHome.style("z-index",2);
         speed_e+=0.0001;
         bgOpacity+=speed_e;
         canvasbg.style("opacity",bgOpacity);
-        bgcolor.style("opacity",(bgOpacity-0.15));
+        bgcolor.style("opacity",(bgOpacity-0.1));
+        uiRighttop.style("opacity",bgOpacity);
+        uiLefttop.style("opacity",bgOpacity);
+        uiRight.style("opacity",bgOpacity);
+        uiLeft.style("opacity",bgOpacity);
+        uiHome.style("color","#666");
+        uiHome.style("color","#666");
+        uiLeft.style("fill","#666");
+        uiRight.style("fill","#666");
       }
       var condition1 = window_Height-100;
-      if(bgOpacity>=0.9&&uiOpacity>=0&&mouseY<condition1){
+      if(bgOpacity>=2.99&&uiOpacity>=0&&mouseY<condition1&&mouseY>100) {
         uitop-=0.3;
         uiOpacity-=0.02;
         uiHome.style("top",(uitop+"px"));
@@ -774,12 +791,17 @@ function draw() {
 
       }
 
-      if (bgOpacity>=0.99&&uiOpacity<=1&&mouseY>condition1) {
-        uitop+=0.3;
-        uiOpacity+=0.02;
-        uiHome.style("bottom",(uitop+"px"));
-        uiHome.style("opacity",uiOpacity);
-      };
+
+
+      if (bgOpacity>=2.99&&uiOpacity<=1) {
+        if(mouseY>condition1||mouseY<100){
+          uitop+=0.3;
+          uiOpacity+=0.02;
+          uiHome.style("top",(uitop+"px"));
+          uiHome.style("bottom",(uitop+"px"));
+          uiHome.style("opacity",uiOpacity);
+        }
+      }
 //点击selecticon后
 
 
@@ -845,9 +867,10 @@ function exitFullscreen() {
 //键盘监听
 document.onkeydown=function(event){ 
   var e = event || window.event || arguments.callee.caller.arguments[0]; 
+
+
   if(e && e.keyCode==32){
     event.preventDefault();
-
     spacebardown_mark=1;
   }
 
@@ -879,7 +902,9 @@ document.onkeyup=function(event){
     event.preventDefault();
 
     spacebardown_mark=0;
-    canvasOpacity_mark=1;
+    if(uiOpacity>0.79){
+      canvasOpacity_mark=1;
+    }
   }
 } 
 //键盘监听
