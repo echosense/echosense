@@ -51,13 +51,13 @@ a, button {
 
 .link--orange {
 	transition: color .1s linear;
+	display: inline-block;
 
 
 }
 
 .link--orange:hover {
 	color: #e47839;
-	cursor:pointer;
 }
 
 
@@ -115,13 +115,17 @@ a, button {
 }
 
 .save{
-	display: inline-block;
 	margin-left: 8px;
+	cursor:pointer;
 }
 
 .print{
-	display: inline-block;
 	margin-left: 8px;
+	cursor:pointer;
+}
+
+.back{
+	cursor:pointer;
 }
 
 .shareul{
@@ -241,11 +245,11 @@ a, button {
   	position:absolute;
 	top:50%;
 	left:50%;
-	margin-top:-281.25px;
-	margin-left:-500px;
+	margin-top:-450px;
+	margin-left:-800px;
 	z-index: -998;
-	width: 1000px;
-	height: 562.5px;
+	width: 1600px;
+	height: 900px;
 }
 
 #bgcolor{
@@ -324,6 +328,11 @@ span{
 	opacity: 0;
 	display: block;
 	margin-bottom: 5px;
+}
+
+.copyright{
+	display: inline-block;
+	opacity: 0.5;
 }
 
 .btn.active {

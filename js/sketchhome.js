@@ -1,3 +1,5 @@
+//首页声明
+
 var e_old_cursor_x;
 var e_old_cursor_y=[];
 var e_cursor_x=0;
@@ -164,11 +166,32 @@ var spanOpacity=0;
 var btnbgOpacity=0;
 var btntop=-9;
 var introductionOpacity=0;
+var back_click;
+var save_click;
+var print_click;
+var back_mark=0;
+var back;
+var save;
+var print;
+var orange_mark=0;
+var once_mark=0;
+var canvas_mark=0;
+//首页声明
 
+//wave声明
+var wave_old_cursor_x;
+var wave_old_cursor_y=[];
+var wave_cursor_x;
+var wave_cursor_y=[];
+var wave_gao;
+var wave_handdraw=0;
+//wave声明
 
 
 function preload(){
-  sound = loadSound('audio/Artur Rubinstein - Nocturne No. 1, Op. 32 in B.mp3');
+  sound = loadSound('audio/Echoes of Nature - Pebble Beach.mp3');
+  //sound_wave = loadSound('audio/Echoes of Nature - Pebble Beach.mp3');
+
   //bg = loadImage("bg1.png");
 }
 
@@ -252,12 +275,39 @@ function setup(){
   var select_icon_=document.getElementById('select_icon');
   select_icon_.onclick = function(){
     select_icon_mark=1;
+    back_mark=0;
   }
   canvasbg=select("#canvasbg");
   bgcolor=select("#bgcolor");
   //选择页
 
+  //bg大小
+  if(window_Height<=1350){
+    canvasbg.style("height", window_Height*2/3+"px");
+    canvasbg.style("width", window_Height*32/27+"px");
+    canvasbg.style("margin-top", -(window_Height/3)+"px");
+    canvasbg.style("margin-left", -(window_Height*16/27)+"px");
+  }
+  //bg大小
 
+  //back
+  back=select('#back');
+  save=select('#save');
+  save_click=document.getElementById('save');
+  save_click.onclick = function(){
+    saveCanvas('myEchoSense','png');
+  }
+  print=select('#print');
+  back_click=document.getElementById('back');
+  back_click.onclick = function(){
+    back_mark=1;
+  }
+  //back
+
+  //wave声明
+  wave_gao = window_Height/2;
+  wave_cursor_x=window_Width/2-window_Height*16/27+4;
+  //wave声明
 
   frameRate(60);
   sound.amp(1);
@@ -309,7 +359,7 @@ function draw() {
     var vol = sound.getLevel();
 
     //console.log(vol*2);
-    strokeWeight(vol*14);
+    strokeWeight(vol*10);
     //if(vol>=0.02){
 
       for(j=0;j<=waveform.length;j++){
@@ -747,8 +797,11 @@ function draw() {
 
         select_icon.style("opacity",iconOpacity);
         select_icon.style("z-index",1);
+        uiSpacebar.style("z-index",-1);
       }
 //点击spacebar后
+      
+
 
 
 //spacebardown 动画
@@ -764,25 +817,40 @@ function draw() {
 //spacebardown 动画
 
 //点击selecticon后
-      if (select_icon_mark==1&&bgOpacity<=3) {
+      if (select_icon_mark==1&&bgOpacity<=3&&back_mark==0) {
+        once_mark=0;
         canvasbg.style("z-index",3);
         bgcolor.style("z-index",1);
-        uiHome.style("z-index",2);
+        uiHome.style("z-index",5);
         speed_e+=0.0001;
         bgOpacity+=speed_e;
         canvasbg.style("opacity",bgOpacity);
-        bgcolor.style("opacity",(bgOpacity-0.1));
+        if(bgOpacity<=1){
+          bgcolor.style("opacity",(bgOpacity-0.05));
+        }
         uiRighttop.style("opacity",bgOpacity);
         uiLefttop.style("opacity",bgOpacity);
         uiRight.style("opacity",bgOpacity);
         uiLeft.style("opacity",bgOpacity);
-        uiHome.style("color","#666");
-        uiHome.style("color","#666");
-        uiLeft.style("fill","#666");
-        uiRight.style("fill","#666");
+        uiHome.style("color","#999");
+        uiHome.style("color","#999");
+        uiLeft.style("fill","#999");
+        uiRight.style("fill","#999");
+        if(canvas_mark==0){
+          clear();
+          homeCanvas.style("opacity",1);
+          homeCanvas.style("z-index",4);
+          canvas_mark=1;
+        }
+        if(orange_mark==1){
+          save.style("cursor","pointer");
+          print.style("cursor","pointer");
+          back.style("cursor","pointer");
+          orange_mark=0;
+        }
       }
       var condition1 = window_Height-100;
-      if(bgOpacity>=2.99&&uiOpacity>=0&&mouseY<condition1&&mouseY>100) {
+      if(bgOpacity>=2.99&&uiOpacity>=0&&mouseY<condition1&&mouseY>100&&back_mark==0) {
         uitop-=0.3;
         uiOpacity-=0.02;
         uiHome.style("top",(uitop+"px"));
@@ -793,7 +861,7 @@ function draw() {
 
 
 
-      if (bgOpacity>=2.99&&uiOpacity<=1) {
+      if (bgOpacity>=2.99&&uiOpacity<=1&&back_mark==0) {
         if(mouseY>condition1||mouseY<100){
           uitop+=0.3;
           uiOpacity+=0.02;
@@ -804,6 +872,88 @@ function draw() {
       }
 //点击selecticon后
 
+//点击back后
+      if (back_mark==1&&bgOpacity>=0) {
+        if(once_mark==0){
+          bgOpacity=1;
+          once_mark=1;
+        }
+        bgOpacity-=0.01;
+        canvasbg.style("opacity",bgOpacity);
+        bgcolor.style("opacity",bgOpacity-0.05);
+        uiRighttop.style("opacity",bgOpacity);
+        uiLefttop.style("opacity",bgOpacity);
+        uiHome.style("color","#fff");
+        uiHome.style("color","#fff");
+        uiLeft.style("fill","#fff");
+        uiRight.style("fill","#fff");
+        if(bgOpacity<=0.1){
+          canvasbg.style("z-index",-1);
+          bgcolor.style("z-index",-1);
+          uiHome.style("z-index",0);
+        }
+        if(orange_mark==0){
+          save.style("cursor","default");
+          print.style("cursor","default");
+          back.style("cursor","default");
+          homeCanvas.style("z-index",-99);
+          canvas_mark=0;
+          orange_mark=1;
+
+        }
+
+      }
+//点击back后
+
+//wave generate
+    if(bgOpacity>=2.99){
+      strokeWeight(vol*5);
+      if(wave_cursor_x<(window_Width/2+window_Height*16/27-5)&&wave_gao<window_Height*5/6-20){
+        for(j=0;j<=waveform.length;j++){
+          wave_old_cursor_x = wave_cursor_x;
+          wave_old_cursor_y[j] = wave_cursor_y[j];
+
+        }
+
+
+
+        wave_cursor_x+=1; 
+        for(i=0;i<=waveform.length;i++){
+          wave_handdraw+=random(-0.08,0.08);
+          if(vol>=0&&vol<0.02){
+            stroke(201,208,214,100);
+          }
+          if(vol>=0.02&&vol<0.03){
+            stroke(143,163,170,100);
+          }
+          if(vol>=0.03&&vol<0.04){
+            stroke(86,108,121,100);
+          }
+          if(vol>=0.04&&vol<0.05){
+            stroke(62,82,91,100);
+          }
+          if(vol>=0.05&&vol<0.06){
+            stroke(41,55,68,100);
+          }
+          if(vol>=0.06){
+            stroke(14,30,42,100);
+          }          
+          if(vol<=0.06){
+            wave_cursor_y[i] = wave_gao+wave_handdraw+random(-6,6);
+          }  
+          if(vol>0.06){
+            wave_cursor_y[i] = wave_gao+wave_handdraw+random(-vol*100,6);
+          }                          
+          line(wave_old_cursor_x,wave_old_cursor_y[i],wave_cursor_x,wave_cursor_y[i]); 
+        }
+      }
+
+      if(wave_cursor_x>(window_Width/2+window_Height*16/27-5)){
+        wave_cursor_x=window_Width/2-window_Height*16/27+4;
+        wave_gao+=10;
+      }
+    }
+//wave generate
 
 }
 
