@@ -140,6 +140,14 @@ var enlarge2;
 var shrink2;
 var fullscreen_mark=0;
 var select_icon;
+var arrow_left;
+var arrow_right;
+var patha;
+var pathb;
+var pathc;
+var pathd;
+var pathe;
+var pathf;
 var iconOpacity=0;
 var speed_a=0;
 var speed_b=0;
@@ -154,11 +162,14 @@ var speed_j=0;
 var speed_k=0;
 var speed_l=0;
 var select_icon_mark=0;
+var select_arrowleft=0;
+var select_arrowright=0;
 var bgOpacity=0;
 var canvasbg;
 var bgcolor;
 var selectOpacity=1;
 var animatemark=0;
+var animatemark2=0;
 var animateOpacity=0;
 var spanOpacity=0;
 var btnbgOpacity=0;
@@ -253,6 +264,55 @@ function setup(){
   select_icon_.onclick = function(){
     select_icon_mark=1;
   }
+  
+  
+  arrow_left=select('#arrow_left')
+  var arrow_left_=document.getElementById('arrow_left');
+  select_icon_.onclick = function(){
+    select_arrowleft=1;
+  }
+  
+  
+  arrow_right=select('#arrow_right')
+  var arrow_right_=document.getElementById('arrow_right');
+  select_icon_.onclick = function(){
+    select_arrowright=1;
+  }
+  arrow_right_.onclick = function(){
+    animatemark2+=1;
+      
+      if(animatemark2>=3){
+          animatemark2=0;
+      }
+     
+  }
+    arrow_left_.onclick = function(){
+    animatemark2-=1;
+      
+      if(animatemark2<=-1){
+          animatemark2=2;
+      }
+     
+  }
+  
+  patha=select('#patha');
+  var patha_=document.getElementById('patha');
+    
+  pathb=select('#pathb');
+  var pathb_=document.getElementById('pathb');
+    
+  pathc=select('#pathc');
+  var pathc_=document.getElementById('pathc');
+    
+  pathd=select('#pathd');
+  var pathd_=document.getElementById('pathd');
+    
+  pathe=select('#pathe');
+  var pathe_=document.getElementById('pathe');
+    
+  pathf=select('#pathf');
+  var pathf_=document.getElementById('pathf');
+    
   canvasbg=select("#canvasbg");
   bgcolor=select("#bgcolor");
   //选择页
@@ -732,6 +792,7 @@ function draw() {
 
 //点击spacebar后
       if(canvasOpacity_mark==1&&canvasOpacity>=0){
+
         speed_d =0.01;
         canvasOpacity-=speed_d;
         spacebar_button.style("cursor","default");
@@ -740,17 +801,65 @@ function draw() {
         uiIntroduction.style("opacity", canvasOpacity);
       }
 
-      if(canvasOpacity_mark==1&&canvasOpacity<0.01&&iconOpacity<=0.8){
-
+      if(canvasOpacity_mark==1&&canvasOpacity<0.01){
+        if(iconOpacity<=0.8){
         speed_a+=0.0001;
         iconOpacity+=speed_a;
-
-        select_icon.style("opacity",iconOpacity);
+        //select_icon.style("opacity",iconOpacity);
         select_icon.style("z-index",1);
+        arrow_left.style("opacity",iconOpacity);
+        arrow_left.style("z-index",1);
+        arrow_right.style("opacity",iconOpacity);
+        arrow_right.style("z-index",1);
+        }
+      if(animatemark2==0){
+        patha.style("animation","dash 3s cubic-bezier(0.58, 0.1, 0.25, 1.0) forwards");
+        pathb.style("animation","dash 4.2s cubic-bezier(0.58, 0.1, 0.25, 1.0) forwards");
+        pathc.style("animation","none");
+        pathd.style("animation","none");
+        pathe.style("animation","none");
+        pathf.style("animation","none");
+        patha.style("opacity",1);
+        pathb.style("opacity",1);
+        pathc.style("opacity",0);
+        pathd.style("opacity",0);
+        pathe.style("opacity",0);
+        pathf.style("opacity",0);
+       
+          
+        }
+        if(animatemark2==1){
+        patha.style("opacity",0);
+        pathb.style("opacity",0);
+        pathc.style("opacity",1);
+        pathd.style("opacity",1);
+        pathe.style("opacity",0);
+        pathf.style("opacity",0);
+        pathc.style("animation","dash 3s cubic-bezier(0.58, 0.1, 0.25, 1.0) forwards");
+        pathd.style("animation","dash 4.2s cubic-bezier(0.58, 0.1, 0.25, 1.0) forwards");
+        patha.style("animation","none");
+        pathb.style("animation","none");
+        pathe.style("animation","none");
+        pathf.style("animation","none");
+          
+        }
+        if(animatemark2==2){
+        patha.style("opacity",0);
+        pathb.style("opacity",0);
+        pathc.style("opacity",0);
+        pathd.style("opacity",0);
+        pathe.style("opacity",1);
+        pathf.style("opacity",1);
+        pathe.style("animation","dash 3s cubic-bezier(0.58, 0.1, 0.25, 1.0) forwards");
+        pathf.style("animation","dash2 4.2s cubic-bezier(0.58, 0.1, 0.25, 1.0) forwards");
+        pathc.style("animation","none");
+        pathd.style("animation","none");
+        patha.style("animation","none");
+        pathb.style("animation","none");
+          
+        }
       }
 //点击spacebar后
-
-
 //spacebardown 动画
       if(spacebardown_mark==1&&spacebardown<=8){
         spacebardown+=1.5;
@@ -762,7 +871,6 @@ function draw() {
         spacebarInner.style("margin-top",spacebardown);
       }
 //spacebardown 动画
-
 //点击selecticon后
       if (select_icon_mark==1&&bgOpacity<=3) {
         canvasbg.style("z-index",3);
@@ -788,9 +896,8 @@ function draw() {
         uiHome.style("top",(uitop+"px"));
         uiHome.style("bottom",(uitop+"px"));
         uiHome.style("opacity",uiOpacity);
-
+     
       }
-
 
 
       if (bgOpacity>=2.99&&uiOpacity<=1) {
@@ -807,11 +914,10 @@ function draw() {
 
 }
 
+//点击左右arrow后
+//if (select_arrowleft==1) {.style("opacity",0)}if (select_arrowright==1) {.style("opacity",0)}
 
-
-
-
-
+//点击arrow后
 
 
 
