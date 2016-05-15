@@ -179,12 +179,17 @@ var canvas_mark=0;
 //首页声明
 
 //wave声明
-
+var wave_old_cursor_x;
+var wave_old_cursor_y=[];
+var wave_cursor_x;
+var wave_cursor_y=[];
+var wave_gao;
+var wave_handdraw=0;
 //wave声明
 
 
 function preload(){
-  sound = loadSound('audio/Artur Rubinstein - Nocturne No. 1, Op. 32 in B.mp3');
+  sound = loadSound('audio/Echoes of Nature - Pebble Beach.mp3');
   //sound_wave = loadSound('audio/Echoes of Nature - Pebble Beach.mp3');
 
   //bg = loadImage("bg1.png");
@@ -209,8 +214,6 @@ function setup(){
   homeCanvas.style("margin-left", left);
   //canvas居中
 
-  var testsvg=select('#svg_4');
-  testsvg.addClass('fuck');
 
   //全屏
   enlarge = document.getElementById('fullscreen');
@@ -290,6 +293,10 @@ function setup(){
   //back
   back=select('#back');
   save=select('#save');
+  save_click=document.getElementById('save');
+  save_click.onclick = function(){
+    saveCanvas('myEchoSense','png');
+  }
   print=select('#print');
   back_click=document.getElementById('back');
   back_click.onclick = function(){
@@ -297,7 +304,10 @@ function setup(){
   }
   //back
 
-
+  //wave声明
+  wave_gao = window_Height/2;
+  wave_cursor_x=window_Width/2-window_Height*16/27+4;
+  //wave声明
 
   frameRate(60);
   sound.amp(1);
@@ -349,7 +359,7 @@ function draw() {
     var vol = sound.getLevel();
 
     //console.log(vol*2);
-    strokeWeight(vol*14);
+    strokeWeight(vol*10);
     //if(vol>=0.02){
 
       for(j=0;j<=waveform.length;j++){
@@ -894,6 +904,56 @@ function draw() {
 
       }
 //点击back后
+
+//wave generate
+    if(bgOpacity>=2.99){
+      strokeWeight(vol*5);
+      if(wave_cursor_x<(window_Width/2+window_Height*16/27-5)&&wave_gao<window_Height*5/6-20){
+        for(j=0;j<=waveform.length;j++){
+          wave_old_cursor_x = wave_cursor_x;
+          wave_old_cursor_y[j] = wave_cursor_y[j];
+
+        }
+
+
+
+        wave_cursor_x+=1; 
+        for(i=0;i<=waveform.length;i++){
+          wave_handdraw+=random(-0.08,0.08);
+          if(vol>=0&&vol<0.02){
+            stroke(201,208,214,100);
+          }
+          if(vol>=0.02&&vol<0.03){
+            stroke(143,163,170,100);
+          }
+          if(vol>=0.03&&vol<0.04){
+            stroke(86,108,121,100);
+          }
+          if(vol>=0.04&&vol<0.05){
+            stroke(62,82,91,100);
+          }
+          if(vol>=0.05&&vol<0.06){
+            stroke(41,55,68,100);
+          }
+          if(vol>=0.06){
+            stroke(14,30,42,100);
+          }          
+          if(vol<=0.06){
+            wave_cursor_y[i] = wave_gao+wave_handdraw+random(-6,6);
+          }  
+          if(vol>0.06){
+            wave_cursor_y[i] = wave_gao+wave_handdraw+random(-vol*100,6);
+          }                          
+          line(wave_old_cursor_x,wave_old_cursor_y[i],wave_cursor_x,wave_cursor_y[i]); 
+        }
+      }
+
+      if(wave_cursor_x>(window_Width/2+window_Height*16/27-5)){
+        wave_cursor_x=window_Width/2-window_Height*16/27+4;
+        wave_gao+=10;
+      }
+    }
+//wave generate
 
 }
 
