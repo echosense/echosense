@@ -41,9 +41,6 @@ button {
     border: 0;
     font-size: 16px;
     background-color: transparent;
-    -webkit-appearance: none;
-    outline:0;
-    outline:none;
 }
 
 a, button {
@@ -213,9 +210,10 @@ a, button {
 
 .select_icon{
 	z-index: -1;
+	opacity:0;
 	width: 310px;
 	height: 310px;
-	position: absolute;
+	position: relative;
 	top: 45%;
 	left: 50%; 
 	margin-left: -150px;
@@ -226,75 +224,16 @@ a, button {
 	width: 310px;
 	height:310px;
 	cursor:pointer;
-    z-index: 10;
-    position: absolute;
+    stroke-dasharray: 2000;
+    stroke-dashoffset: 2000;
+    animation: dash 2s cubic-bezier(0.5, 0.05, 0.25, 1.0) forwards;
 }
 
-.icon_Ring{
-    width: 310px;
-	height:310px;
-	cursor:pointer;
-    z-index: 11;
-    position: absolute;
-}
-.icon_cosmos{
-    width: 310px;
-	height:310px;
-	cursor:pointer;
-    z-index: 12;
-    position: absolute;
-    
-}
-
-.patha {
-  stroke-dasharray: 2000;
-  stroke-dashoffset: 2000;
-  animation: none;
-  -webkit-animation: none;
-}
-.pathc {
-  stroke-dasharray: 2000;
-  stroke-dashoffset: 2000;
-  animation: none;
-  -webkit-animation: none;
-}
-.pathe {
-  stroke-dasharray: 2000;
-  stroke-dashoffset: 2000;
-  animation: none;
-  -webkit-animation: none;
-}
 @keyframes dash {
 
-to {
+   to {
     stroke-dashoffset: 0;
-   }
-}
-
-.pathb{
-  stroke-dasharray: 2000;
-  stroke-dashoffset: 2000;
-  animation: none;
-   -webkit-animation: none;
-}
-.pathd{
-  stroke-dasharray: 2000;
-  stroke-dashoffset: 2000;
-  animation: none;
-   -webkit-animation: none;
-}
-.pathf{
-  stroke-dasharray: 2000;
-  stroke-dashoffset: 2000;
-  animation: none;
-   -webkit-animation: none;
-}
-
-@keyframes dash2 {
-
-to {
-    stroke-dashoffset: 80;
-   }
+  }
 }
 
 #canvasbg{
@@ -318,7 +257,7 @@ to {
 	height: 100%;
 	background-color: #e6e6e6;
 }
-/* ----------首页BUTTON开始---------- */
+
 .spacebar__posttext,.spacebar__pretext {
 	opacity: 0;
 	position: relative;
@@ -441,49 +380,4 @@ span{
     background-color: transparent;
   }
 }
-/* ----------SELECT页面开始---------- */
-button {
-  -webkit-appearance: none;
-  background: transparent;
-  border: 0;
-  outline:0;
-}
 
-svg {
-  padding: 5px;
-}
-
-.arrow {
-  cursor: pointer;
-  position: absolute;
-  top: 45%;
-  margin-top: -45px;
-  margin-left: -35px;
-  width: 70px;
-  height: 90px;
-  opacity: 0;
-}
-
-.left {
-  left: 1%;
-}
-
-.right {
-  left: 99%;
-}
-
-
-
-.left:active polyline {
-  stroke-width: 4;
-  transition: all 100ms ease-in-out;
-}
-
-.right:active polyline {
-  stroke-width: 4;
-  transition: all 100ms ease-in-out;
-}
-
-polyline {
-  transition: all 250ms ease-in-out;
-}
